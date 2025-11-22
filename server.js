@@ -20,12 +20,14 @@ const authRoutes = require('./routes/Auth');
 const userRoutes = require('./routes/User');
 const contactRoutes = require('./routes/Contact');
 const adminRoutes = require('./routes/Admin');
+const apiRoutes = require('./routes/Routes_Api');
 
 // Mount routes
 app.use('/api/v1', authRoutes);
 app.use('/api/v1/user', userRoutes);
 app.use("/api/v1/contacts", contactRoutes);
 app.use('/api/v1/admin', adminRoutes);
+app.use('/api', apiRoutes);
 
 // Home route
 app.get('/', (req, res) => {
