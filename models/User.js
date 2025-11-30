@@ -1,34 +1,47 @@
-const mongoose= require("mongoose");
+const mongoose = require("mongoose");
 
-const userSchema=new mongoose.Schema({
-    email:{
-        type:String,
-        // required:true,
-        trim:true
+const userSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        
+        trim: true
     },
-    phoneNumber:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Number",
-        required:true,
+    
+    
+    phoneNumber: {
+        type: String, 
+        required: true, 
+        unique: true,   
+        trim: true
     },
-    password:{
-        type:String,
-        // required:true
+    
+    
+    spamCount: {
+        type: Number,
+        default: 0, 
     },
-    accountType:{
-        type:String,
-        // required:true,
-        default:'Customer',
-        enum:["Admin","Customer"]
+    
+    password: {
+        type: String,
+        
     },
-    additionalDetails:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"AdditionalDetails",
+    accountType: {
+        type: String,
+        
+        default: 'Customer',
+        enum: ["Admin", "Customer"]
+    },
+    
+    additionalDetails: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "AdditionalDetails",
     },
     lastContactSync: {
-    type: Date,
-    default: null,
-  },
+        type: Date,
+        default: null,
+    },
+    
+    
+});
 
-})
-module.exports=mongoose.model('User',userSchema);
+module.exports = mongoose.model('User', userSchema);
