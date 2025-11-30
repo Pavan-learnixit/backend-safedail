@@ -38,12 +38,12 @@ app.get('/', (req, res) => {
 const { DbConnect } = require('./config/databse');
 DbConnect();
 
-// ✅ Only start server locally (for development)
+//  Only start server locally (for development)
 if (!process.env.FUNCTION_NAME) {
   app.listen(port, () => {
     console.log(`App is running locally on port ${port}`);
   });
 }
 
-// ✅ Export API for Firebase Functions
+// Export API for Firebase Functions
 exports.api = functions.https.onRequest(app);
