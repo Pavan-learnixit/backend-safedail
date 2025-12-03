@@ -1,7 +1,5 @@
 // scripts/migrateExistingNumbers.js
 // Usage: node scripts/migrateExistingNumbers.js
-// Adjust to your DB connection code.
-
 const mongoose = require('mongoose');
 const NumberEntry = require('../models/NumberEntry');
 
@@ -12,7 +10,7 @@ async function main() {
   }
   await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-  // Example: migrate a small hard-coded list or adapt to pull from old collections
+  
   const existing = [
     { phone: '+911234567890', name: 'Example Inc', reports: 3 },
   ];
@@ -33,3 +31,4 @@ async function main() {
 }
 
 main().catch(err => { console.error(err); process.exit(1); });
+
