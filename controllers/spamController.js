@@ -2,15 +2,15 @@
 const NumberEntry = require('../models/NumberEntry');
 const NumberReport = require('../models/NumberReport');
 
-// Normalizes phone numbers: remove spaces, parentheses, dashes. Keep plus and digits.
+
 function normalizeNumber(num) {
   if (!num) return null;
   return String(num).replace(/[^0-9+]/g, '');
 }
 
-// Simple spam scoring function - tune weights as you like
+
 function computeSpamScore(entry) {
-  // base: each unique reporter adds 20 points, capped at 100
+  //  each unique reporter adds 20 points capped at 100
   const unique = entry.uniqueReporters || 0;
   const score = Math.min(100, unique * 20);
   return score;
@@ -52,7 +52,7 @@ module.exports = {
   },
 
   // POST /api/spam/report
-  // body: { phoneNumber, reason, details } and either req.user._id or body.reportedBy
+  
   async reportNumber(req, res) {
     try {
       const body = req.body || {};
@@ -136,7 +136,7 @@ module.exports = {
     }
   },
 
-  // GET /api/spam/admin/summary
+  
   async adminSummary(req, res) {
     try {
       const top = await NumberEntry.find().sort({ spamScore: -1 }).limit(50).lean();
@@ -147,3 +147,4 @@ module.exports = {
     }
   }
 };
+
