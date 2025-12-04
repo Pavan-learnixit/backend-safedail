@@ -14,21 +14,13 @@ app.use(cors({
   origin: "*", // or your frontend URL
   credentials: true
 }));
-//Spam Routes 
-const spamRoutes = require('./routes/spam.js');
-app.use('/spam', spamRoutes);
-
-
-
 // Importing routes
 const AuthRoutes = require('./routes/Auth');
 const UserRoutes = require('./routes/User');
 const ContactRoutes = require('./routes/Contact');
-const addInfoRoutes = require('./routes/addInfo');
 const apiRoutes = require('./routes/Routes_Api');
 const spamRoutes = require('./routes/spam'); 
 const authRoutes=require('./routes/Auth.js');
-
 // Mount routes
 app.use('/api/v1/auth', AuthRoutes);
 app.use('/api/v1/user', UserRoutes);
@@ -56,3 +48,4 @@ if (!process.env.FUNCTION_NAME) {
 
 // Export API for Firebase Functions
 exports.api = functions.https.onRequest(app);
+
