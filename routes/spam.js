@@ -17,13 +17,13 @@ const limiter = rateLimit({
 // Public lookup
 router.get('/lookup/:phone', limiter, spamController.lookupNumber);
 
-// Report (requires some reporter id — optional auth stub will accept X-User-Id header)
+// Report requires some reporter id 
 router.post('/report', limiter, auth.optional, spamController.reportNumber);
 
 // Unreport
 router.post('/unreport', limiter, auth.optional, spamController.unreportNumber);
 
-// Admin summary - requires admin token
 router.get('/admin/summary', limiter, auth.adminOnly, spamController.adminSummary);
 
 module.exports = router;
+
